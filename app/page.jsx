@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef } from 'react';
 
 // ============================================================
 // ZEYAI v2 — Chat + RAG Optional
