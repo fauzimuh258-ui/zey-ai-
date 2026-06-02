@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 
 // ============================================================
 // ZEYAI v2 — Chat + RAG Optional
