@@ -1,3 +1,4 @@
+"use server";
 import "./globals.css";
 
 export const metadata = {
