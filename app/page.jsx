@@ -152,8 +152,8 @@ export default function ZeyAI() {
     setRagBusy(true);
     setProgress("Mengunduh model embedding (~23 MB, sekali saja)...");
     try {
-      const { pipeline } = await import(
-        "https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2/src/transformers.js"
+      throw new Error("RAG embedding tidak tersedia di versi ini. Gunakan chat biasa.");
+  
       );
       setProgress("Memuat all-MiniLM-L6-v2...");
       const pipe = await pipeline("feature-extraction", "Xenova/all-MiniLM-L6-v2", {
