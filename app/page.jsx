@@ -12,7 +12,7 @@ const GATEWAY_URL = "";
 const SECRET_KEY  = "vvbam988";
 
 const GROQ_MODELS = [
-  { id: "llama3-70b-8192",    label: "Llama3 70B" },
+  { id: "llama-3.3-70b-versatile",    label: "Llama3 70B" },
   { id: "llama3-8b-8192",     label: "Llama3 8B" },
   { id: "mixtral-8x7b-32768", label: "Mixtral 8x7B" },
   { id: "gemma2-9b-it",       label: "Gemma2 9B" },
@@ -109,7 +109,7 @@ const IcoTrash = () => (
 
 // ════════════════════════════════════════════════════════════════
 export default function ZeyAI() {
-  const [model,        setModel]        = useState("llama3-70b-8192");
+  const [model,        setModel]        = useState("llama-3.3-70b-versatile");
   const [ragMode,      setRagMode]      = useState(false);
   const [ragReady,     setRagReady]     = useState(false);
   const [ragBusy,      setRagBusy]      = useState(false);
