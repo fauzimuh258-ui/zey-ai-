@@ -7,7 +7,7 @@ import { useState, useRef, useEffect, useCallback } from "react";
 // RAG     : Transformers.js + IndexedDB (gratis, no server)
 // ============================================================
 
-const GATEWAY_URL = "https://my-api-key-alpha.vercel.app";
+const GATEWAY_URL = const GATEWAY_URL = "";
 const SECRET_KEY  = "vvbam988";
 
 const GROQ_MODELS = [
