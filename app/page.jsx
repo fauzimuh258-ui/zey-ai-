@@ -34,6 +34,23 @@ useEffect(() => {
 
   return () => subscription.unsubscribe()
 }, [])
+useEffect(() => {
+  const loadHistory = async () => {
+    const { data: { user: currentUser } } = await supabase.auth.getUser()
+    if (!currentUser) return
+
+    const { data: chats } = await supabase
+      .from('chats')
+      .select('*')
+      .eq('user_id', currentUser.id)
+      .order('created_at', { ascending: true })
+
+    if (chats?.length) {
+      setMessages(chats.map(c => ({ role: c.role, content: c.message, err: false })))
+    }
+  }
+  loadHistory()
+}, [user])
 // ── IndexedDB helpers ─────────────────────────────────────────
 function openDB() {
   return new Promise((res, rej) => {
