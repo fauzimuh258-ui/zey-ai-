@@ -21,7 +21,19 @@ const GROQ_MODELS = [
 const DB_NAME  = "zeyai_rag_v2";
 const DB_STORE = "chunks";
 const TOP_K    = 4;
+const [user, setUser] = useState(null)
 
+useEffect(() => {
+  supabase.auth.getSession().then(({ data: { session } }) => {
+    setUser(session?.user ?? null)
+  })
+
+  const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    setUser(session?.user ?? null)
+  })
+
+  return () => subscription.unsubscribe()
+}, [])
 // ── IndexedDB helpers ─────────────────────────────────────────
 function openDB() {
   return new Promise((res, rej) => {
