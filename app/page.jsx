@@ -155,8 +155,16 @@ export default function ZeyAI() {
 
   // ── Push helpers ─────────────────────────────────────────────
   const sys  = (txt) => setMessages((p) => [...p, { role: "system",    content: txt }]);
-  const push = (role, content, err = false) =>
-    setMessages((p) => [...p, { role, content, err }]);
+  const push = async (role, content, err = false) => {
+  setMessages(prev => [...prev, { role, content, err }])
+
+  const { data: { user: currentUser } } = await supabase.auth.getUser()
+  if (!currentUser) return
+
+  await supabase.from('chats').insert([
+    { user_id: currentUser.id, message: content, role, created_at: new Date().toISOString() }
+  ])
+  }
 
   // ── Load Transformers.js model ────────────────────────────────
   const loadEmbedder = useCallback(async () => {
