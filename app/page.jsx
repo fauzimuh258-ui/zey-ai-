@@ -373,6 +373,7 @@ export default function ZeyAI() {
           </button>
         )}
         <input ref={fileRef} type="file" accept=".txt,.md,.csv,.json" multiple className="hidden" onChange={handleUpload} />
+
 {/* Tombol Login/Logout */}
 {user ? (
   <button onClick={() => supabase.auth.signOut()}
@@ -381,14 +382,18 @@ export default function ZeyAI() {
   </button>
 ) : (
   <button onClick={() => supabase.auth.signInWithOAuth({ provider: 'google' })}
-    className="flex items-center gap-1 text-[11px] px-2 py-1.5 rounded border border-[#f0c040] text-[#f0c040] hover:bg-[#f0c040]/10 transition
-        {/* Docs button */}
-        {docs.length > 0 && (
-          <button onClick={() => setShowDocs((v) => !v)}
-            className="text-[11px] px-2 py-1.5 rounded border border-[#222] hover:border-[#f0c040] hover:text-[#f0c040] transition-all">
-            Docs
-          </button>
-        )}
+    className="flex items-center gap-1 text-[11px] px-2 py-1.5 rounded border border-[#f0c040] text-[#f0c040] hover:bg-[#f0c040]/10 transition-all">
+    Login
+  </button>
+)}
+
+{/* Docs button */}
+{docs.length > 0 && (
+  <button onClick={() => setShowDocs((v) => !v)}
+    className="text-[11px] px-2 py-1.5 rounded border border-[#222] hover:border-[#f0c040] hover:text-[#f0c040] transition-all">
+    Docs
+  </button>
+)}
 
         {/* Settings */}
         <button onClick={() => setShowSettings((v) => !v)}
