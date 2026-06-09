@@ -1,6 +1,6 @@
 "use client";
 import { useState, useRef, useEffect, useCallback } from "react";
-import { supabase } from './lib/supabase'
+import { supabase } from '../lib/supabase'
 // ============================================================
 // ZEYAI v2 — Chat + RAG Optional
 // Gateway : https://my-api-3z63p7294-fauzimuh258-uis-projects.vercel.app
