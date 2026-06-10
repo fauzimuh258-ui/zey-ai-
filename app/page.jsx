@@ -20,8 +20,11 @@ const GROQ_MODELS = [
 
 const DB_NAME  = "zeyai_rag_v2";
 const DB_STORE = "chunks";
-const TOP_K    = 4;
-const [user, setUser] = useState(null)
+const TOP_K = 4;
+
+export default function Home() {
+  const [user, setUser] = useState(null)
+
 
 useEffect(() => {
   supabase.auth.getSession().then(({ data: { session } }) => {
