@@ -22,7 +22,7 @@ const DB_NAME  = "zeyai_rag_v2";
 const DB_STORE = "chunks";
 const TOP_K = 4;
 
-export default function Home() {
+export default function ZeyAI() {
   const [user, setUser] = useState(null)
 
 
