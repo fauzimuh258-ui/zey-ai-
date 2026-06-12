@@ -25,7 +25,7 @@ export default function Landing() {
           fontWeight: 'bold'
         }}>Coba Zey AI</a>
         
-        <a href="https://mayar.id/lo" style={{
+        <a href="https://mfdigital.myr.id/catalog/ai-email-conversion-system/"style={{
           background: 'transparent',
           color: '#f0c040',
           padding: '12px 24px',
@@ -37,7 +37,7 @@ export default function Landing() {
       </div>
       
       <div style={{ marginTop: '40px', display: 'flex', gap: '20px' }}>
-        <a href="https://x.com/vazi" style={{ color: '#f0c040', textDecoration: 'none' }}>𝕏 Twitter</a>
+        <a href="https://x.com/Muhamma42740707" style={{ color: '#f0c040', textDecoration: 'none' }}>𝕏 Twitter</a>
         <a href="mailto:vvbam988@gmail.com" style={{ color: '#f0c040', textDecoration: 'none' }}>📧 Email</a>
       </div>
     </div>
