@@ -305,8 +305,6 @@ const sanitizeInput = (text) => {
 const query = cleanedInput;
 setInput("");
 push("user", query);
-    
-
     setSending(true);
 
     const history = messages
