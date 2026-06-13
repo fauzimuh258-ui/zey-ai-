@@ -325,9 +325,11 @@ push("user", query);
           sys("⚠️ RAG ON tapi belum ada dokumen — pakai chat biasa.");
         reply = await handleChatWithoutRAG(query, history);
       }
-      push("assistant", reply);
+      const safeReply = validateOutput(reply);
+push("assistant", safeReply);
     } catch (err) {
-      push("assistant", `⚠️ Error: ${err.message}`, true);
+      const safeError = validateOutput(`⚠️ Error: ${err.message}`);
+push("assistant", safeError, true);
     } finally {
       setSending(false);
       setProgress("");
