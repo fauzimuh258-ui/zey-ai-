@@ -300,9 +300,13 @@ const sanitizeInput = (text) => {
   // ── Main send ─────────────────────────────────────────────────
   const handleSend = useCallback(async () => {
     if (!input.trim() || sending) return;
-    const query = input.trim();
-    setInput("");
-    push("user", query);
+    const cleanedInput = sanitizeInput(input);
+  if (!cleanedInput) return;
+const query = cleanedInput;
+setInput("");
+push("user", query);
+    
+
     setSending(true);
 
     const history = messages
