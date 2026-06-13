@@ -296,7 +296,11 @@ const sanitizeInput = (text) => {
       "Jawab dalam bahasa yang sama dengan pertanyaan.";
     return callGateway([...history, { role: "user", content: ctx + query }], system);
   }, [callGateway, ragSearch]);
-
+const validateOutput = (text) => {
+  if (!text || text.trim() === '') return '[Error: Empty response]';
+  let cleaned = text.slice(0, 5000);
+  return cleaned;
+                     }
   // ── Main send ─────────────────────────────────────────────────
   const handleSend = useCallback(async () => {
     if (!input.trim() || sending) return;
