@@ -169,7 +169,13 @@ useEffect(() => {
       setDocs(Object.entries(map).map(([name, count]) => ({ name, count })));
     }).catch(() => {});
   }, []);
-
+const sanitizeInput = (text) => {
+  if (!text || text.trim() === '') return '';
+  let cleaned = text.slice(0, 2000);
+  cleaned = cleaned.replace(/\0/g, '');
+  cleaned = cleaned.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '');
+  return cleaned.trim();
+    }
   // ── Push helpers ─────────────────────────────────────────────
   const sys  = (txt) => setMessages((p) => [...p, { role: "system",    content: txt }]);
   const push = async (role, content, err = false) => {
