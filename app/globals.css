@@ -1,3 +1,59 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* Provider Selector */
+.provider-selector {
+  position: relative;
+}
+
+.provider-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: #0f0f0f;
+  color: #ddd8cc;
+  border: 1px solid #222;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 11px;
+  font-family: inherit;
+}
+
+.provider-button:hover {
+  border-color: #f0c040;
+  color: #f0c040;
+}
+
+.provider-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  background: #0f0f0f;
+  border: 1px solid #222;
+  border-radius: 8px;
+  padding: 4px;
+  z-index: 1000;
+  min-width: 200px;
+}
+
+.provider-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  cursor: pointer;
+  border-radius: 6px;
+  color: #ddd8cc;
+  transition: background 0.2s;
+}
+
+.provider-option:hover {
+  background: #1a1a1a;
+}
+
+.provider-option.active {
+  background: #1a1a1a;
+  border: 1px solid #333;
+}
