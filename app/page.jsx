@@ -435,7 +435,8 @@ push("assistant", safeError, true);
     Docs
   </button>
 )}
-
+{/* Provider Selector */}
+<ProviderSelector onSelect={setProvider} />
         {/* Settings */}
         <button onClick={() => setShowSettings((v) => !v)}
           className="p-1.5 rounded border border-[#222] hover:border-[#f0c040] hover:text-[#f0c040] transition-all text-[#555]">
