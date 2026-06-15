@@ -1,4 +1,4 @@
-import { checkRateLimit } from '../../lib/rateLimit.js';
+import { checkRateLimit } from '../../../lib/rateLimit.js';
 
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
 const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY;
