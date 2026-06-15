@@ -124,7 +124,8 @@ export default function ZeyAI() {
   const [showSettings, setShowSettings] = useState(false);
   const [showDocs,     setShowDocs]     = useState(false);
   const [uploading,    setUploading]    = useState(false);
-
+const [provider, setProvider] = useState('auto');
+  
   const [user, setUser] = useState(null)
   const bottomRef   = useRef(null);
   const fileRef     = useRef(null);
