@@ -5,7 +5,6 @@ import { useState } from 'react';
 const PROVIDER_LIST = [
   { id: 'auto', name: 'Auto', icon: '🤖', description: 'Pilih terbaik otomatis' },
   { id: 'groq', name: 'Groq', icon: '⚡', description: 'Llama 3.3 — Tercepat' },
-  { id: 'gemini', name: 'Gemini', icon: '🔵', description: 'Google — Stabil' },
   { id: 'deepseek', name: 'DeepSeek', icon: '🟣', description: 'Cadangan' },
 ];
 
