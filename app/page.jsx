@@ -125,6 +125,9 @@ export default function ZeyAI() {
   const [showDocs,     setShowDocs]     = useState(false);
   const [uploading,    setUploading]    = useState(false);
 const [provider, setProvider] = useState('auto');
+const [chats, setChats] = useState([]);
+const [activeChat, setActiveChat] = useState(null);
+const [sidebarOpen, setSidebarOpen] = useState(true);
   
   const [user, setUser] = useState(null)
   const bottomRef   = useRef(null);
