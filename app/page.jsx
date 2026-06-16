@@ -174,6 +174,66 @@ useEffect(() => {
       setDocs(Object.entries(map).map(([name, count]) => ({ name, count })));
     }).catch(() => {});
   }, []);
+  // Load chats
+const loadChats = async () => {
+  const { data: { user: currentUser } } = await supabase.auth.getUser();
+  if (!currentUser) return;
+  
+  const { data } = await supabase
+    .from('chats')
+    .select('*')
+    .eq('user_id', currentUser.id)
+    .order('created_at', { ascending: false });
+  
+  if (data) setChats(data);
+};
+
+// Panggil loadChats saat user login
+useEffect(() => {
+  if (user) loadChats();
+}, [user]);
+
+// Buat chat baru
+const createNewChat = async () => {
+  const { data: { user: currentUser } } = await supabase.auth.getUser();
+  if (!currentUser) return;
+  
+  const { data } = await supabase
+    .from('chats')
+    .insert({ user_id: currentUser.id, title: 'Chat Baru' })
+    .select()
+    .single();
+  
+  if (data) {
+    setChats([data, ...chats]);
+    setActiveChat(data.id);
+    setMessages([]);
+  }
+};
+
+// Hapus chat
+const deleteChat = async (chatId) => {
+  await supabase.from('chats').delete().eq('id', chatId);
+  setChats(chats.filter(c => c.id !== chatId));
+  if (activeChat === chatId) {
+    setActiveChat(null);
+    setMessages([]);
+  }
+};
+
+// Pilih chat
+const selectChat = async (chatId) => {
+  setActiveChat(chatId);
+  const { data } = await supabase
+    .from('messages')
+    .select('*')
+    .eq('chat_id', chatId)
+    .order('created_at', { ascending: true });
+  
+  if (data) {
+    setMessages(data.map(m => ({ role: m.role, content: m.message })));
+  }
+};
 const sanitizeInput = (text) => {
   if (!text || text.trim() === '') return '';
   let cleaned = text.slice(0, 2000);
