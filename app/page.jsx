@@ -195,27 +195,26 @@ useEffect(() => {
 
 // Buat chat baru
 const createNewChat = async () => {
-  console.log('createNewChat dipanggil');
   const { data: { user: currentUser } } = await supabase.auth.getUser();
-  console.log('user:', currentUser);
-  if (!currentUser) return alert('Silakan login dulu');
+  if (!currentUser) return;
   
-  const { data, error } = await supabase
+  const { data } = await supabase
     .from('chats')
-    .insert({ user_id: currentUser.id, title: 'Chat Baru' })
+    .insert({ user_id: currentUser.id })
     .select()
     .single();
-  
-  console.log('data:', data, 'error:', error);
   
   if (data) {
     setChats([data, ...chats]);
     setActiveChat(data.id);
     setMessages([]);
-  } else {
-    alert('Gagal buat chat: ' + (error?.message || 'Unknown'));
   }
 };
+    
+    
+    
+
+  
 
 // Hapus chat
 const deleteChat = async (chatId) => {
