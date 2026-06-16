@@ -432,13 +432,22 @@ push("assistant", safeError, true);
     {sidebarOpen && (
       <div className="w-64 bg-[#0a0a0a] border-r border-[#161616] flex flex-col h-screen sticky top-0">
         <div className="p-3 border-b border-[#161616]">
-          <button
-            onClick={createNewChat}
-            className="w-full text-left text-xs px-3 py-2 rounded border border-[#222] hover:border-[#f0c040] hover:text-[#f0c040] transition-all"
-          >
-            ＋ Chat Baru
-          </button>
-        </div>
+  {!user ? (
+    <button
+      onClick={() => supabase.auth.signInWithOAuth({ provider: 'google' })}
+      className="w-full text-left text-xs px-3 py-2 rounded border border-[#f0c040] text-[#f0c040] hover:bg-[#f0c040]/10 transition-all mb-2"
+    >
+      🔑 Login dengan Google
+    </button>
+  ) : null}
+  <button
+    onClick={createNewChat}
+    className="w-full text-left text-xs px-3 py-2 rounded border border-[#222] hover:border-[#f0c040] hover:text-[#f0c040] transition-all"
+  >
+    ＋ Chat Baru
+  </button>
+</div>   
+        
         <div className="flex-1 overflow-y-auto">
           {chats.map(chat => (
             <div
