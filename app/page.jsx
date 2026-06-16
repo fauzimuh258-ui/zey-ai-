@@ -500,6 +500,22 @@ push("assistant", safeError, true);
     Docs
   </button>
 )}
+        {user && (
+  <select 
+    onChange={(e) => {
+      if (e.target.value === 'new') createNewChat();
+      else if (e.target.value) selectChat(e.target.value);
+    }}
+    value={activeChat || ''}
+    className="bg-[#0f0f0f] border border-[#222] rounded px-2 py-1 text-[11px] text-[#ddd8cc] focus:outline-none focus:border-[#f0c040] max-w-[130px] truncate"
+  >
+    <option value="">💬 Chat</option>
+    <option value="new">＋ Baru</option>
+    {chats.map(c => (
+      <option key={c.id} value={c.id}>{c.title || 'Chat Baru'}</option>
+    ))}
+  </select>
+)}
 {/* Provider Selector */}
 <ProviderSelector onSelect={setProvider} />
         {/* Settings */}
