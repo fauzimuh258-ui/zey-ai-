@@ -424,60 +424,8 @@ push("assistant", safeError, true);
   const modelLabel = GROQ_MODELS.find((m) => m.id === model)?.label || model;
 
   // ── RENDER ────────────────────────────────────────────────────
- return (
-  <div style={{ fontFamily: "'DM Mono', monospace" }}
-    className="min-h-screen bg-[#080808] text-[#ddd8cc] flex">
+ 
     
-    {/* ══ SIDEBAR ══ */}
-    {sidebarOpen && (
-      <div className="w-64 bg-[#0a0a0a] border-r border-[#161616] flex flex-col h-screen sticky top-0">
-        <div className="p-3 border-b border-[#161616]">
-  {!user ? (
-    <button
-      onClick={() => supabase.auth.signInWithOAuth({ provider: 'google' })}
-      className="w-full text-left text-xs px-3 py-2 rounded border border-[#f0c040] text-[#f0c040] hover:bg-[#f0c040]/10 transition-all mb-2"
-    >
-      🔑 Login dengan Google
-    </button>
-  ) : null}
-  <button
-    onClick={createNewChat}
-    className="w-full text-left text-xs px-3 py-2 rounded border border-[#222] hover:border-[#f0c040] hover:text-[#f0c040] transition-all"
-  >
-    ＋ Chat Baru
-  </button>
-</div>   
-        
-        <div className="flex-1 overflow-y-auto">
-          {chats.map(chat => (
-            <div
-              key={chat.id}
-              onClick={() => selectChat(chat.id)}
-              className={`flex items-center justify-between px-3 py-2 cursor-pointer text-xs border-b border-[#111] ${
-                activeChat === chat.id ? 'bg-[#111] text-[#f0c040]' : 'hover:bg-[#0d0d0d]'
-              }`}
-            >
-              <span className="truncate">{chat.title || 'Chat Baru'}</span>
-              <button
-                onClick={(e) => { e.stopPropagation(); deleteChat(chat.id); }}
-                className="text-[#333] hover:text-red-500 ml-1"
-              >
-                ✕
-              </button>
-            </div>
-          ))}
-        </div>
-      </div>
-    )}
-    
-    {/* ══ MAIN ══ */}
-    <div className="flex-1 flex flex-col min-h-screen">
-      {/* ... HEADER TETAP SAMA ... */}
-      {/* ... CHAT AREA TETAP SAMA ... */}
-      {/* ... INPUT TETAP SAMA ... */}
-    </div>
-  </div>
-);
   return (
     <div style={{ fontFamily: "'DM Mono', monospace" }}
       className="min-h-screen bg-[#080808] text-[#ddd8cc] flex flex-col">
