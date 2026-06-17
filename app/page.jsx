@@ -690,7 +690,16 @@ push("assistant", safeError, true);
         )}
 
         {/* Messages */}
-       {msg.role === "user" && !msg.err && (
+       
+        {messages.map((msg, i) => {
+          if (msg.role === "system") return (
+            <div key={i} className="text-center fu">
+              <span className="inline-block text-[10px] text-[#2e2e2e] bg-[#0e0e0e] border border-[#181818] rounded-full px-3 py-1">
+                {msg.content}
+              </span>
+            </div>
+          );
+        {msg.role === "user" && !msg.err && (
   <div className="flex gap-2 mt-1">
     <button onClick={() => {
       const newText = prompt('Edit pesan:', msg.content)
@@ -701,14 +710,6 @@ push("assistant", safeError, true);
     }} className="text-[10px] text-[#555] hover:text-red-500">🗑️</button>
   </div>
 )}
-        {messages.map((msg, i) => {
-          if (msg.role === "system") return (
-            <div key={i} className="text-center fu">
-              <span className="inline-block text-[10px] text-[#2e2e2e] bg-[#0e0e0e] border border-[#181818] rounded-full px-3 py-1">
-                {msg.content}
-              </span>
-            </div>
-          );
           return (
             <div key={i} className={`flex gap-2 fu ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
               {msg.role === "assistant" && (
