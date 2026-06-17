@@ -271,14 +271,30 @@ const sanitizeInput = (text) => {
   // ── Push helpers ─────────────────────────────────────────────
   const sys  = (txt) => setMessages((p) => [...p, { role: "system",    content: txt }]);
   const push = async (role, content, err = false) => {
-  setMessages(prev => [...prev, { role, content, err }])
-
   const { data: { user: currentUser } } = await supabase.auth.getUser()
-  if (!currentUser) return
-
-  await supabase.from('chats').insert([
-    { user_id: currentUser.id, message: content, role, created_at: new Date().toISOString() }
-  ])
+  if (!currentUser) {
+    setMessages(prev => [...prev, { role, content, err }])
+    return
+  }
+  
+  const { data } = await supabase
+    .from('messages')
+    .insert({
+      user_id: currentUser.id,
+      chat_id: activeChat,
+      message: content,
+      role: role,
+      created_at: new Date().toISOString()
+    })
+    .select()
+    .single()
+  
+  setMessages(prev => [...prev, { 
+    id: data?.id,
+    role, 
+    content, 
+    err 
+  }])
   }
 
   // ── Load Transformers.js model ────────────────────────────────
