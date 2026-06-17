@@ -682,7 +682,6 @@ push("assistant", safeError, true);
         )}
 
         {/* Messages */}
-       
         {messages.map((msg, i) => {
           if (msg.role === "system") return (
             <div key={i} className="text-center fu">
