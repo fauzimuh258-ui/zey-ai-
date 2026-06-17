@@ -192,15 +192,18 @@ const loadChats = async () => {
       .order('created_at', { ascending: false });
     
     if (error) {
-      console.log('loadChats error:', error);
+      console.error('loadChats error:', error);
+      setChats([]);
       return;
     }
     
-    if (data) setChats(data);
+    setChats(data || []);
   } catch (e) {
-    console.log('loadChats exception:', e);
+    console.error('loadChats exception:', e);
+    setChats([]);
   }
 };
+  
 
 // Panggil loadChats saat user login
 useEffect(() => {
