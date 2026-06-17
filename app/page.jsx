@@ -181,16 +181,25 @@ useEffect(() => {
   }, []);
   // Load chats
 const loadChats = async () => {
-  const { data: { user: currentUser } } = await supabase.auth.getUser();
-  if (!currentUser) return;
-  
-  const { data } = await supabase
-    .from('chats')
-    .select('*')
-    .eq('user_id', currentUser.id)
-    .order('created_at', { ascending: false });
-  
-  if (data) setChats(data);
+  try {
+    const { data: { user: currentUser } } = await supabase.auth.getUser();
+    if (!currentUser) return;
+    
+    const { data, error } = await supabase
+      .from('chats')
+      .select('*')
+      .eq('user_id', currentUser.id)
+      .order('created_at', { ascending: false });
+    
+    if (error) {
+      console.log('loadChats error:', error);
+      return;
+    }
+    
+    if (data) setChats(data);
+  } catch (e) {
+    console.log('loadChats exception:', e);
+  }
 };
 
 // Panggil loadChats saat user login
