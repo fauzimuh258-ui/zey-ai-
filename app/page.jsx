@@ -690,6 +690,17 @@ push("assistant", safeError, true);
         )}
 
         {/* Messages */}
+       {msg.role === "user" && !msg.err && (
+  <div className="flex gap-2 mt-1">
+    <button onClick={() => {
+      const newText = prompt('Edit pesan:', msg.content)
+      if (newText && newText !== msg.content) editMessage(i, newText)
+    }} className="text-[10px] text-[#555] hover:text-[#f0c040]">✏️</button>
+    <button onClick={() => {
+      if (confirm('Hapus pesan ini?')) deleteMessage(i)
+    }} className="text-[10px] text-[#555] hover:text-red-500">🗑️</button>
+  </div>
+)}
         {messages.map((msg, i) => {
           if (msg.role === "system") return (
             <div key={i} className="text-center fu">
