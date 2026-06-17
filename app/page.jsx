@@ -392,7 +392,30 @@ const validateOutput = (text) => {
   if (!text || text.trim() === '') return '[Error: Empty response]';
   let cleaned = text.slice(0, 5000);
   return cleaned;
-                     }
+  // Edit pesan
+const editMessage = async (index, newContent) => {
+  const updated = [...messages];
+  updated[index].content = newContent;
+  setMessages(updated);
+  
+  // Update di Supabase
+  const msg = messages[index];
+  if (msg.id) {
+    await supabase.from('messages').update({ message: newContent }).eq('id', msg.id);
+  }
+};
+
+// Hapus pesan
+const deleteMessage = async (index) => {
+  const msg = messages[index];
+  const updated = messages.filter((_, i) => i !== index);
+  setMessages(updated);
+  
+  // Hapus dari Supabase
+  if (msg.id) {
+    await supabase.from('messages').delete().eq('id', msg.id);
+  }
+};                   }
   // ── Main send ─────────────────────────────────────────────────
   const handleSend = useCallback(async () => {
     if (!input.trim() || sending) return;
