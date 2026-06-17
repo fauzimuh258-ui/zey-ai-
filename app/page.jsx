@@ -146,26 +146,31 @@ useEffect(() => {
 }, [])
   useEffect(() => {
   const loadHistory = async () => {
-    const { data: { user: currentUser } } = await supabase.auth.getUser()
-    if (!currentUser) return
+    try {
+      const { data: { user: currentUser } } = await supabase.auth.getUser();
+      if (!currentUser || !activeChat) return;
 
-    if (activeChat) {
-      // Load pesan hanya untuk chat aktif
-      const { data: messages } = await supabase
+      const { data: messages, error } = await supabase
         .from('messages')
         .select('*')
         .eq('chat_id', activeChat)
-        .order('created_at', { ascending: true })
+        .order('created_at', { ascending: true });
 
-      if (messages?.length) {
-        setMessages(messages.map(c => ({ role: c.role, content: c.message, err: false })))
-      } else {
-        setMessages([])
+      if (error) {
+        console.error('loadHistory error:', error);
+        setMessages([]);
+        return;
       }
+
+      setMessages((messages || []).map(c => ({ role: c.role, content: c.message, err: false })));
+    } catch (e) {
+      console.error('loadHistory exception:', e);
+      setMessages([]);
     }
-  }
-  loadHistory()
-}, [user, activeChat])
+  };
+  loadHistory();
+}, [user, activeChat]);
+
   // auto-scroll
   useEffect(() => { bottomRef.current?.scrollIntoView({ behavior: "smooth" }); }, [messages, sending]);
 
