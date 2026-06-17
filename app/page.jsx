@@ -511,21 +511,35 @@ push("assistant", safeError, true);
   </button>
 )}
         {user && (
-  <select 
-    onChange={(e) => {
-      if (e.target.value === 'new') createNewChat();
-      else if (e.target.value) selectChat(e.target.value);
-    }}
-    value={activeChat || ''}
-    className="bg-[#0f0f0f] border border-[#222] rounded px-2 py-1 text-[11px] text-[#ddd8cc] focus:outline-none focus:border-[#f0c040] max-w-[130px] truncate"
-  >
-    <option value="">💬 Chat</option>
-    <option value="new">＋ Baru</option>
-    {chats.map(c => (
-      <option key={c.id} value={c.id}>{c.title || 'Chat Baru'}</option>
-    ))}
-  </select>
+  <div className="flex items-center gap-1">
+    <select 
+      onChange={(e) => {
+        if (e.target.value === 'new') createNewChat();
+        else if (e.target.value) selectChat(e.target.value);
+      }}
+      value={activeChat || ''}
+      className="bg-[#0f0f0f] border border-[#222] rounded px-2 py-1 text-[11px] text-[#ddd8cc] focus:outline-none focus:border-[#f0c040] max-w-[160px] truncate"
+    >
+      <option value="">💬 Chat</option>
+      <option value="new">＋ Baru</option>
+      {chats.map(c => (
+        <option key={c.id} value={c.id}>{c.title || 'Chat ' + c.id.slice(-4)}</option>
+      ))}
+    </select>
+    {activeChat && (
+      <button 
+        onClick={() => {
+          if (confirm('Hapus chat ini?')) deleteChat(activeChat);
+        }}
+        className="text-[10px] px-1.5 py-1 rounded border border-red-800 text-red-500 hover:bg-red-900/20"
+        title="Hapus chat"
+      >
+        ✕
+      </button>
+    )}
+  </div>
 )}
+  
 {/* Provider Selector */}
 <ProviderSelector onSelect={setProvider} />
         {/* Settings */}
