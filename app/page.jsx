@@ -690,33 +690,38 @@ push("assistant", safeError, true);
               </span>
             </div>
           );
-       {msg.role === "user" && !msg.err && (
-  <div className="flex gap-1 mt-1 mb-1">
+      {msg.role === "user" && !msg.err && (
+  <div key={`actions-${i}`} className="flex justify-end gap-1 px-1">
     <button 
-      onTouchStart={(e) => {
-        e.stopPropagation();
-        const newText = prompt('Edit pesan:', msg.content);
+      onClick={() => {
+        const newText = window.prompt('Edit pesan:', msg.content);
         if (newText && newText !== msg.content) editMessage(i, newText);
       }}
-      onMouseDown={(e) => {
-        e.preventDefault();
-        const newText = prompt('Edit pesan:', msg.content);
-        if (newText && newText !== msg.content) editMessage(i, newText);
+      style={{
+        fontSize: '10px',
+        padding: '2px 8px',
+        border: '1px solid #555',
+        borderRadius: '4px',
+        color: '#aaa',
+        background: '#222',
+        cursor: 'pointer'
       }}
-      className="text-[11px] px-2 py-1 rounded border border-[#444] text-[#ccc] bg-[#1a1a1a] active:bg-[#333]"
     >
       ✏️ Edit
     </button>
     <button 
-      onTouchStart={(e) => {
-        e.stopPropagation();
-        if (confirm('Hapus pesan ini?')) deleteMessage(i);
+      onClick={() => {
+        if (window.confirm('Hapus pesan ini?')) deleteMessage(i);
       }}
-      onMouseDown={(e) => {
-        e.preventDefault();
-        if (confirm('Hapus pesan ini?')) deleteMessage(i);
+      style={{
+        fontSize: '10px',
+        padding: '2px 8px',
+        border: '1px solid #555',
+        borderRadius: '4px',
+        color: '#aaa',
+        background: '#222',
+        cursor: 'pointer'
       }}
-      className="text-[11px] px-2 py-1 rounded border border-[#444] text-[#ccc] bg-[#1a1a1a] active:bg-[#333]"
     >
       🗑️ Hapus
     </button>
