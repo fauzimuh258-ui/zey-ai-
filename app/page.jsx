@@ -209,7 +209,6 @@ const loadChats = async () => {
   }
 };
   
-
 // Panggil loadChats saat user login
 useEffect(() => {
   if (user) loadChats();
@@ -232,11 +231,6 @@ const createNewChat = async () => {
     setMessages([]);
   }
 };
-    
-    
-    
-
-  
 
 // Hapus chat
 const deleteChat = async (chatId) => {
@@ -490,8 +484,6 @@ push("assistant", safeError, true);
   const modelLabel = GROQ_MODELS.find((m) => m.id === model)?.label || model;
 
   // ── RENDER ────────────────────────────────────────────────────
- 
-    
   return (
     <div style={{ fontFamily: "'DM Mono', monospace" }}
       className="min-h-screen bg-[#080808] text-[#ddd8cc] flex flex-col">
@@ -699,32 +691,38 @@ push("assistant", safeError, true);
               </span>
             </div>
           );
-        {msg.role === "user" && !msg.err && (
+       {msg.role === "user" && !msg.err && (
   <div className="flex gap-1 mt-1 mb-1">
     <button 
-      onClick={(e) => {
-        e.preventDefault();
+      onTouchStart={(e) => {
         e.stopPropagation();
         const newText = prompt('Edit pesan:', msg.content);
         if (newText && newText !== msg.content) editMessage(i, newText);
-      }} 
+      }}
+      onMouseDown={(e) => {
+        e.preventDefault();
+        const newText = prompt('Edit pesan:', msg.content);
+        if (newText && newText !== msg.content) editMessage(i, newText);
+      }}
       className="text-[11px] px-2 py-1 rounded border border-[#444] text-[#ccc] bg-[#1a1a1a] active:bg-[#333]"
     >
       ✏️ Edit
     </button>
     <button 
-      onClick={(e) => {
-        e.preventDefault();
+      onTouchStart={(e) => {
         e.stopPropagation();
         if (confirm('Hapus pesan ini?')) deleteMessage(i);
-      }} 
+      }}
+      onMouseDown={(e) => {
+        e.preventDefault();
+        if (confirm('Hapus pesan ini?')) deleteMessage(i);
+      }}
       className="text-[11px] px-2 py-1 rounded border border-[#444] text-[#ccc] bg-[#1a1a1a] active:bg-[#333]"
     >
       🗑️ Hapus
     </button>
   </div>
 )}
-        
           return (
             <div key={i} className={`flex gap-2 fu ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
               {msg.role === "assistant" && (
