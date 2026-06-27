@@ -13,10 +13,10 @@ const GATEWAY_URL = "";
 const SECRET_KEY  = "vvbam988";
 
 const GROQ_MODELS = [
-  { id: "llama-3.3-70b-versatile",    label: "Llama3 70B" },
-  { id: "llama3-8b-8192",     label: "Llama3 8B" },
-  { id: "mixtral-8x7b-32768", label: "Mixtral 8x7B" },
-  { id: "gemma2-9b-it",       label: "Gemma2 9B" },
+  { id: "llama-3.3-70b-versatile", label: "⚡ Llama 3.3 70B" },
+  { id: "gpt-oss-20b",             label: "🧠 GPT OSS 20B" },
+  { id: "gpt-oss-120b",            label: "💪 GPT OSS 120B" },
+  { id: "llama-4-scout",           label: "👁️ Llama 4 Scout" },
 ];
 
 const DB_NAME  = "zeyai_rag_v2";
