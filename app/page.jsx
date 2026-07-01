@@ -13,7 +13,8 @@ const GATEWAY_URL = "";
 const SECRET_KEY  = "vvbam988";
 
 const GROQ_MODELS = [
-  { id: "llama-3.3-70b-versatile", label: "⚡ Llama 3.3 70B" },
+  { id: "gpt-oss-120b", label: "💪 GPT OSS 120B" },
+]
   { id: "qwen-3-32b",              label: "🧠 Qwen 3 32B" },
   { id: "qwen-3.6-27b",            label: "🌐 Qwen 3.6 27B" },
   { id: "gpt-oss-20b",             label: "💪 GPT OSS 20B" },
