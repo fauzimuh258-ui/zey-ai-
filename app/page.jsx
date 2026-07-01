@@ -14,10 +14,9 @@ const SECRET_KEY  = "vvbam988";
 
 const GROQ_MODELS = [
   { id: "gpt-oss-120b", label: "💪 GPT OSS 120B" },
-]
-  { id: "qwen-3-32b",              label: "🧠 Qwen 3 32B" },
-  { id: "qwen-3.6-27b",            label: "🌐 Qwen 3.6 27B" },
-  { id: "gpt-oss-20b",             label: "💪 GPT OSS 20B" },
+  { id: "qwen-3-32b", label: "🧠 Qwen 3 32B" },
+  { id: "qwen-3.6-27b", label: "🌐 Qwen 3.6 27B" },
+  { id: "gpt-oss-20b", label: "💪 GPT OSS 20B" },
 ];
 const DB_NAME  = "zeyai_rag_v2";
 const DB_STORE = "chunks";
