@@ -1,18 +1,17 @@
 # CLAUDE.md — Zey AI
 
-## Cara Kerja Saya
-- MVP dulu, fitur kompleks belakangan
-- Test tiap fitur sebelum deploy
-
-## Error yang Sering Muncul
-- Groq model deprecated → ganti ke llama-3.3-70b-versatile
-- Supabase RLS → pastikan policy user_id benar
+## Fungsi
+AI Chatbot (12 fitur)
 
 ## Tech Stack
-- Next.js 14, Supabase, Groq, Vercel
-- Gateway: zey-ai.vercel.app/api/chat
+- Next.js, Supabase, Vercel
+
+## Error yang Sering Muncul
+- Rate limit → kurangi request
+- Supabase RLS → cek policy
 
 ## Aturan
-- Rate limiting: 20 req/menit/user
-- Input sanitizer wajib
-- Output validator wajib
+- JANGAN TULIS API KEY DI SINI
+- Env vars di Vercel dashboard
+- Jangan sebut Gateway
+- Jangan sebut model AI
